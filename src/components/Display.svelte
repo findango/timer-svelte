@@ -5,7 +5,7 @@
     export let time = 0;
     $: ({ hours, mins, secs } = digits.length
         ? parseDigits(digits)
-        : parseTime(time + 950));
+        : parseTime(time + 900));
 </script>
 
 <div class="display">
@@ -22,7 +22,7 @@
 
     .digit {
         display: inline-block;
-        color: #5c6e80;
+        color: #7f8f9f;
         font-size: 5rem;
         margin: 1rem;
         margin-bottom: 0;

@@ -4,14 +4,20 @@
     $: progressWidth = 100 * (progress / total);
 </script>
 
-<div class="background">
-    <div class="progress" style="width: {progressWidth}%" />
+<div class="pad">
+    <div class="background">
+        <div class="progress" style:width="{progressWidth}%" />
+    </div>
 </div>
 
 <style>
+    .pad {
+        padding: 0 1rem;
+    }
+
     .background {
         display: inline-block;
-        height: 10px;
+        height: 12px;
         width: 100%;
         padding: 0;
         margin: 0;
@@ -19,7 +25,7 @@
     }
 
     .progress {
-        height: 10px;
+        height: 100%;
         padding: 0;
         margin: 0;
         background-color: #faba66;
