@@ -18,6 +18,8 @@
         STOPPED: "stopped",
     };
 
+    let sound = new Audio("./sounds/foghorn.mp3");
+
     let status = appStatus.STOPPED;
     let initialTime = 10 * MINUTES;
     let remaining = initialTime;
@@ -67,6 +69,7 @@
     const reset = () => {
         status = appStatus.PAUSED;
         remaining = initialTime;
+        sound.pause();
     };
 
     const clear = () => {
@@ -74,14 +77,18 @@
         initialTime = 0;
         remaining = 0;
         digits = "";
+        sound.pause();
     };
 
     const alarm = () => {
         status = appStatus.ALARMING;
+
+        sound.currentTime = 0;
+        sound.play();
+
         setTimeout(() => {
-            if (status === appStatus.ALARMING && remaining === 0) {
-                status = appStatus.PAUSED;
-                remaining = initialTime;
+            if (status === appStatus.ALARMING) {
+                reset();
             }
         }, ALARM_LENGTH);
     };
@@ -111,9 +118,6 @@
         />
         {#if status === appStatus.STOPPED}
             <Numberpad on:click={handleKeypad} />
-        {/if}
-        {#if status === appStatus.ALARMING}
-            <p>RING RING!</p>
         {/if}
     </div>
 </main>
